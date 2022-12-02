@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="titulo">
+    <h1> Meus Treinos </h1>
+    <img src="../../assets/cademia.png" height="200px" width="200px">
+  </div>
+  
+  
+  <form (submit)="adicionarTreino()">
+    <ion-item class="mt-5 mb-5">
+      <ion-label position="floating">Nome do exercicio:</ion-label>
+      <ion-input [(ngModel)]="novoTreino" name="novoTreino"></ion-input>
+    </ion-item>
+    <ion-button  color="danger" expand="full" (click)="adicionarTreino()">
+      +
+      </ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item-group *ngFor="let treino of treinos; let casinha = index">
+      <ion-item-sliding (ionSwipe)="apagarTreino(casinha)">
+        <ion-item>
+          <ion-label>{{ casinha+1 }}- {{ treino.nome }}</ion-label>
+          <div class="kg">
+            <input [(ngModel)]="treino.peso" (change)="atualizarTreino()" type="number" slot="end">
+          </div>
+          <h6>KG</h6>
+        </ion-item>
+        <ion-item-options side="end"></ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
